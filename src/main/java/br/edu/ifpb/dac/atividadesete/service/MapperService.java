@@ -17,17 +17,6 @@ public class MapperService {
 	@Autowired
 	private ModelMapper mapper;
 	
-	public MapperService(){
-		PropertyMap<Work, WorkDto> workToDtoMap = new PropertyMap<Work, WorkDto>() {
-			
-			@Override
-			protected void configure() {
-				map().setAuthorId(source.getAuthor().getId());
-			}
-		};
-		mapper.addMappings(workToDtoMap);
-	}
-	
 	public Author mapDtoToAuthor(AuthorPostDto dto) {
 		return mapper.map(dto, Author.class);
 	}
@@ -41,6 +30,9 @@ public class MapperService {
 	}
 	
 	public WorkDto mapWorkToDto(Work work) {
-		return mapper.map(work, WorkDto.class);
+		WorkDto dto = mapper.map(work, WorkDto.class);
+		
+		dto.setAuthorId(work.getAuthor().getId());
+		return dto;
 	}
 }

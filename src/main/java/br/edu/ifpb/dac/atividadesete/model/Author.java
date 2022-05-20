@@ -37,7 +37,7 @@ public class Author {
 	@Size(min=3)
 	private String birthPlace;
 	
-	@OneToMany(mappedBy= "autor", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy= "author", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private Set<Work> works = new HashSet<>();
 	
 	

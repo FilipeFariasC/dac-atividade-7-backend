@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifpb.dac.atividadesete.exception.AuthorNotFoundException;
@@ -22,7 +23,8 @@ import br.edu.ifpb.dac.atividadesete.model.dto.AuthorPostDto;
 import br.edu.ifpb.dac.atividadesete.service.AuthorService;
 import br.edu.ifpb.dac.atividadesete.service.MapperService;
 
-@RestController("/api/author")
+@RestController
+@RequestMapping("/api/authors")
 public class AuthorController {
 	
 	@Autowired
@@ -31,10 +33,8 @@ public class AuthorController {
 	@Autowired
 	private MapperService mapperService;
 	
-	private String nome;
-	
 	@PostMapping
-	public ResponseEntity<?> saveAuthor(
+	public ResponseEntity<?> save(
 		@Valid
 		@RequestBody
 		AuthorPostDto postDto) {
@@ -46,7 +46,7 @@ public class AuthorController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(dto);
 	}
 	@GetMapping
-	public ResponseEntity<?>  findAllAuthors(){
+	public ResponseEntity<?>  findAll(){
 		List<AuthorDto> authors = authorService.findAll().stream().map(mapperService::mapAuthorToDto).toList();
 		
 		
@@ -54,7 +54,7 @@ public class AuthorController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getAuthor(@PathVariable("id") Long id) {
+	public ResponseEntity<?> findById(@PathVariable("id") Long id) {
 		try {
 			Author author = authorService.findById(id);
 			
@@ -66,7 +66,7 @@ public class AuthorController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?>  updateAuthor(
+	public ResponseEntity<?>  update(
 		@PathVariable("id") Long id,
 		@Valid
 		@RequestBody AuthorPostDto postDto
@@ -83,7 +83,7 @@ public class AuthorController {
 		
 	}
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteAuthor(@PathVariable("id") Long id) {
+	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		try {
 			authorService.delete(id);
 			return ResponseEntity.noContent().build();
