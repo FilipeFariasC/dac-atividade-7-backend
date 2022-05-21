@@ -14,8 +14,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import br.edu.ifpb.dac.atividadesete.validation.ValidWorkPublication;
+
 @Entity
 @Table(name="work")
+@ValidWorkPublication
 public class Work {
 	
 	@Id

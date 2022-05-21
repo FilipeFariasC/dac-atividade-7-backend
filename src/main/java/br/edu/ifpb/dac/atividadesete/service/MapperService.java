@@ -1,7 +1,6 @@
 package br.edu.ifpb.dac.atividadesete.service;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

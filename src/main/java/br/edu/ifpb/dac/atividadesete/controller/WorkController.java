@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifpb.dac.atividadesete.exception.AuthorNotFoundException;
+import br.edu.ifpb.dac.atividadesete.exception.InvalidPublicationDateException;
 import br.edu.ifpb.dac.atividadesete.exception.WorkNotFoundException;
 import br.edu.ifpb.dac.atividadesete.model.Work;
 import br.edu.ifpb.dac.atividadesete.model.dto.WorkDto;
@@ -47,6 +48,8 @@ public class WorkController {
 			return ResponseEntity.status(HttpStatus.CREATED).body(dto);
 		} catch (AuthorNotFoundException exception) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+		} catch (InvalidPublicationDateException exception) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
 		}
 		
 	}
@@ -83,6 +86,8 @@ public class WorkController {
 			return ResponseEntity.ok(dto);
 		} catch (AuthorNotFoundException | WorkNotFoundException exception) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+		} catch (InvalidPublicationDateException exception) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
 		}
 		
 	}
