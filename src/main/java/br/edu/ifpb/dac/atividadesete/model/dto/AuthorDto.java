@@ -4,10 +4,13 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class AuthorDto {
 
 	private Long id;
 	private String name;
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate birthDate;
 	private String birthPlace;
 	private Set<WorkDto> works = new HashSet<>();

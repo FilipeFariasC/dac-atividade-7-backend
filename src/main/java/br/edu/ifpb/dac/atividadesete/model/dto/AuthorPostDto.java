@@ -6,20 +6,23 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class AuthorPostDto {
 
 	
 	@NotNull
 	@NotEmpty
-	@Size(min=3)
+	@Size(min=1)
 	private String name;
 	
 	@NotNull
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate birthDate;
 	
 	@NotNull
 	@NotEmpty
-	@Size(min=3)
+	@Size(min=1)
 	private String birthPlace;
 
 	public String getName() {

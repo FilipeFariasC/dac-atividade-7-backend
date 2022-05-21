@@ -24,7 +24,7 @@ public class Work {
 	
 	@NotNull
 	@NotEmpty
-	@Size(min=3)
+	@Size(min=1)
 	private String title;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -36,7 +36,7 @@ public class Work {
 	
 	@NotNull
 	@NotEmpty
-	@Size(min=3)
+	@Size(min=1)
 	private String genre;
 
 

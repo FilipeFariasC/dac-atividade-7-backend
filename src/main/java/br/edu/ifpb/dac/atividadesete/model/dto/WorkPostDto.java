@@ -13,7 +13,7 @@ public class WorkPostDto {
 
 	@NotNull
 	@NotEmpty
-	@Size(min=3)
+	@Size(min=1)
 	private String title;
 	
 	@NotNull
@@ -21,12 +21,12 @@ public class WorkPostDto {
 	private Long authorId;
 	
 	@NotNull
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate publicationDate;
 	
 	@NotNull
 	@NotEmpty
-	@Size(min=3)
+	@Size(min=1)
 	private String genre;
 	
 	public String getTitle() {

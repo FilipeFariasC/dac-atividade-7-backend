@@ -26,7 +26,7 @@ public class Author {
 	
 	@NotNull
 	@NotEmpty
-	@Size(min=3)
+	@Size(min=1)
 	private String name;
 	
 	@NotNull
@@ -34,7 +34,7 @@ public class Author {
 	
 	@NotNull
 	@NotEmpty
-	@Size(min=3)
+	@Size(min=1)
 	private String birthPlace;
 	
 	@OneToMany(mappedBy= "author", cascade = CascadeType.REMOVE, orphanRemoval = true)

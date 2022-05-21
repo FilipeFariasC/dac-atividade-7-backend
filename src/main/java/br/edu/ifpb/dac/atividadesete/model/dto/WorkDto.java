@@ -2,11 +2,14 @@ package br.edu.ifpb.dac.atividadesete.model.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class WorkDto {
 
 	private Long id;
 	private String title;
 	private Long authorId;
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate publicationDate;
 	private String genre;
 	

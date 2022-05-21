@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.atividadesete.exception.AuthorNotFoundException;
@@ -27,7 +28,7 @@ public class AuthorService {
 		return authorRepo.save(author);
 	}
 	public List<Author> findAll(){
-		return authorRepo.findAll();
+		return authorRepo.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 	public Author findById(Long id) throws AuthorNotFoundException {
 		Optional<Author> register = authorRepo.findById(id);
@@ -45,6 +46,7 @@ public class AuthorService {
 			throw new AuthorNotFoundException(id);
 		
 		Author author = mapper.mapDtoToAuthor(postDto);
+		author.setId(id);
 		
 		return authorRepo.save(author);
 	}

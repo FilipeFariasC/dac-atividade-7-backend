@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.atividadesete.exception.AuthorNotFoundException;
@@ -35,7 +36,7 @@ public class WorkService {
 	}
 	
 	public List<Work> findAll(){
-		return workRepo.findAll();
+		return workRepo.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 	public Work findById(Long id) throws WorkNotFoundException {
 		Optional<Work> register = workRepo.findById(id);
@@ -59,9 +60,11 @@ public class WorkService {
 		if(!author.getId().equals(dto.getAuthorId())) {
 			update = authorService.findById(dto.getAuthorId());
 		}
-		work.setAuthor(update);
+		Work updated = mapper.mapDtoToWork(dto);
+		updated.setAuthor(update);
+		updated.setId(id);
 		
-		return workRepo.save(work);
+		return workRepo.save(updated);
 	}
 	public void delete(Long id) throws WorkNotFoundException {
 		if(!workRepo.existsById(id)) {
